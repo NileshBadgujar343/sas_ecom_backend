@@ -3,14 +3,14 @@
     "name": "my-monorepo",
     "builds": [
       {
-        "src": "./server.js",
+        "src": "./",
         "use": "@vercel/node"
       }
     ],
     "routes":[
       {
         "src": "/(.*)",
-        "use": ""
+        "use": "/"
       }
     ]
   }
