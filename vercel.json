@@ -3,7 +3,7 @@
     "name": "my-monorepo",
     "builds": [
       {
-        "src": "./",
+        "src": ".",
         "use": "@vercel/node"
       }
     ],
