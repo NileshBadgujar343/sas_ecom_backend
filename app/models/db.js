@@ -13,16 +13,14 @@ const pool = mysql2.createPool({
 });
 
 // Now get a Promise wrapped instance of that pool
-const promisePool = pool.promise();
+pool.getConnection((err, connection) => {
+  if (err) {
+      console.error('Error connecting to database:', err);
+      return;
+  }
+  console.log('Connected to the database!');
+  connection.release(); // Release the connection
+});
 
-// Test the connection
-promisePool.getConnection()
-  .then(connection => {
-    console.log('Connected to the database as id ' + connection.threadId);
-    connection.release();
-  })
-  .catch(err => {
-    console.error('Error connecting to the database:', err.stack);
-  });
-
-module.exports = { promisePool };
+// Export the pool for use in your application
+module.exports = pool;
