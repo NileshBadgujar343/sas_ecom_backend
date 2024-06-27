@@ -1,12 +1,18 @@
 const mysql2 = require("mysql2");
-const dbConfig = require("../config/db.config.js");
+const dbConfig = require("../config/dbconfig.js")
 
 // Create a connection to the database
+// const connection = mysql2.createConnection({
+//   host: dbConfig_HOST,
+//   user: dbConfig_USER,
+//   password: dbConfig_PASSWORD,
+//   database: dbConfig_DB
+// });
 const connection = mysql2.createConnection({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB
+  host: "127.0.0.1",
+  user: "root",
+  password: "MySQL3307",
+  database: "ecom",
 });
 
 
