@@ -31,17 +31,21 @@ const userData = {
   isAdmin: true
 };
 
-// enable CORS
-// app.use(cors());
+// app.use(cors({
+//   origin: '*',
+//   changeOrigin: true,
+//   onProxyRes: function(proxyRes, req, res, next){
+//     proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next();
+//   }
+// }));
+
 app.use(cors({
   origin: '*',
-  changeOrigin: true,
-  onProxyRes: function(proxyRes, req, res, next){
-    proxyRes.headers['Access-Control-Allow-Origin'] = '*';
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-  }
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization']
 }));
 
 // parse application/json
