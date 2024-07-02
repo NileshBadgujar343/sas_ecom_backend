@@ -1,11 +1,14 @@
 {
-  "version": 3,
+  "version": 2,
   "functions": {
     "api/*.js": {
       "runtime": "@vercel/node@16"
     }
   },
-  "routes": {
+  "routes": [
+    {
+      "source": "/api/(.*)",
       "destination": "/api/server.js"
-    }  
+    }
+  ]
 }
