@@ -5,9 +5,7 @@
       "runtime": "@vercel/node@16"
     }
   },
-  "routes": [
-    {
+  "routes": {
       "destination": "/api/server.js"
-    }
-  ]
+    }  
 }
