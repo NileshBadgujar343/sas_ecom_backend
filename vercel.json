@@ -7,8 +7,7 @@
   },
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1",
+      "destination": "/api/server.js",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
