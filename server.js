@@ -13,6 +13,23 @@ const port = process.env.PORT || 8000;
 //const userData[] = require('./userdata');
 
 
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization']
+}));
+
+// app.use(cors({
+//   origin: '*',
+//   changeOrigin: true,
+//   onProxyRes: function(proxyRes, req, res, next){
+//     proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next();
+//   }
+// }));
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb){
     cb(null, 'uploads/');
@@ -31,22 +48,7 @@ const userData = {
   isAdmin: true
 };
 
-// app.use(cors({
-//   origin: '*',
-//   changeOrigin: true,
-//   onProxyRes: function(proxyRes, req, res, next){
-//     proxyRes.headers['Access-Control-Allow-Origin'] = '*';
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//     next();
-//   }
-// }));
-
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization']
-}));
+app.options('*', cors());
 
 // parse application/json
 app.use(bodyParser.json());
