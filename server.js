@@ -32,7 +32,18 @@ const userData = {
 };
 
 // enable CORS
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: '*',
+  changeOrigin: true,
+  onProxyRes: function(proxyRes, req, res, next){
+    proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+  }
+}));
+
 // parse application/json
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
