@@ -4,18 +4,6 @@
 const mysql2 = require('mysql2');
 const dbConfig = require('../config/dbconfig.js');
 
-
-
-const pool = mysql2.createPool({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB,
-  waitForConnections: true,
-  connectionLimit: 10,  
-  queueLimit: 0
-});
-
 // // Create a connection pool
 // const pool = mysql2.createPool({
 //   host: dbConfig.HOST,
@@ -37,14 +25,14 @@ const pool = mysql2.createPool({
 // // Export the pool for use in your application
 // module.exports = pool;
 
-// const connection = mysql2.createConnection({
-//   host: dbConfig.HOST,
-//   user: dbConfig.USER,  COMMENT THE LAST PART
-//   password: dbConfig.PASSWORD,
-//   database: dbConfig.DB,
-//   // keepAliveInitialDelay: 10000, 
-//   // enableKeepAlive: true, 
-// });
+const connection = mysql2.createConnection({
+  host: dbConfig.HOST,
+  user: dbConfig.USER,
+  password: dbConfig.PASSWORD,
+  database: dbConfig.DB,
+  // keepAliveInitialDelay: 10000, 
+  // enableKeepAlive: true, 
+});
 
 //For temporary exporter
 // const connection2 = mysql.createConnection({
@@ -54,14 +42,14 @@ const pool = mysql2.createPool({
 //   database: dbConfig.DB //"cp"
 // });
 // open the MySQL connection
-// connection.connect(error => {
-//   if (error) throw error;
-//   console.log("Successfully connected to the database1.");
-// });
+connection.connect(error => {
+  if (error) throw error;
+  console.log("Successfully connected to the database1.");
+});
 // open the MySQL connection2
 // connection2.connect(error => {
 //   if (error) throw error;
 //   console.log("Successfully connected to the database2.");
 // });
 
-module.exports = pool;
+module.exports = { connection };
