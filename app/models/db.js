@@ -30,8 +30,8 @@ const connection = mysql2.createConnection({
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
-  keepAliveInitialDelay: 10000, // 0 by default.
-  enableKeepAlive: true, // false by default.
+  // keepAliveInitialDelay: 10000, 
+  // enableKeepAlive: true, 
 });
 
 //For temporary exporter
