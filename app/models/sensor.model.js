@@ -187,7 +187,7 @@ Sensor.getTAll = (value, result) => {
   });
 };
 
-// API endpoint to fetch all categories
+// API endpoint to fetch all categories   // c.name
 Sensor.getCategories = (result) => {
   sql.query('SELECT c.id, c.name, COALESCE(ci.image_path, NULL) AS image_path FROM categories c LEFT JOIN category_images ci ON c.id = ci.category_id', (err, res) => {
     if (err) {

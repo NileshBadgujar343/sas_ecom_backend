@@ -6,12 +6,29 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const utils = require('./utils');
+const utils = require('./utils.js');
 
 const app = express();
 const port = process.env.PORT || 8000;
 //const userData[] = require('./userdata');
 
+
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization']
+}));
+
+// app.use(cors({
+//   origin: '*',
+//   changeOrigin: true,
+//   onProxyRes: function(proxyRes, req, res, next){
+//     proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next();
+//   }
+// }));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb){
@@ -31,8 +48,8 @@ const userData = {
   isAdmin: true
 };
 
-// enable CORS
-app.use(cors());
+app.options('*', cors());
+
 // parse application/json
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
