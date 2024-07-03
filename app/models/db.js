@@ -1,55 +1,53 @@
 // 
 
 
-const mysql2 = require('mysql2');
+const mysql = require('mysql2');
 const dbConfig = require('../config/dbconfig.js');
 
-// // Create a connection pool
-// const pool = mysql2.createPool({
+
+
+// const connection = mysql2.createConnection({
 //   host: dbConfig.HOST,
 //   user: dbConfig.USER,
 //   password: dbConfig.PASSWORD,
-//   database: dbConfig.DB
+//   database: dbConfig.DB,
+//   // keepAliveInitialDelay: 10000, 
+//   // enableKeepAlive: true, 
+//   connectionLimit: 10,
+//   waitForConnections: true,
+//   queueLimit: 0
 // });
+function connection(){
+  try{
+  const connection = mysql.createpool({
+    host: dbConfig.HOST,
+    user: dbConfig.USER,
+    password: dbConfig.PASSWORD,
+    database: dbConfig.DB,
+    connectionLimit: 10,
+    waitForConnections: true,
+    queueLimit: 0
+    
+  });
+  const promisePool = pool.promise();
 
-// // Now get a Promise wrapped instance of that pool
-// pool.getConnection((err, connection) => {
-//   if (err) {
-//       console.error('Error connecting to database:', err);
-//       return;
-//   }
-//   console.log('Connected to the database!');
-//   connection.release(); // Release the connection
-// });
+  return promisePool;
+}catch (error) {
+  return console.log(`Could not connect - ${error}`);
+}
+  
+}
 
-// // Export the pool for use in your application
-// module.exports = pool;
 
-const connection = mysql2.createConnection({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB,
-  // keepAliveInitialDelay: 10000, 
-  // enableKeepAlive: true, 
-});
-
-//For temporary exporter
-// const connection2 = mysql.createConnection({
-//   host: dbConfig.HOST,
-//   user: dbConfig.USER,
-//   password: dbConfig.PASSWORD,
-//   database: dbConfig.DB //"cp"
-// });
-// open the MySQL connection
-connection.connect(error => {
-  if (error) throw error;
-  console.log("Successfully connected to the database1.");
-});
-// open the MySQL connection2
-// connection2.connect(error => {
+// connection.connect(error => {
 //   if (error) throw error;
-//   console.log("Successfully connected to the database2.");
+//   console.log("Successfully connected to the database1.");
 // });
+const pool = connection();
 
-module.exports = { connection };
+module.exports = {
+  connection: async () => pool.getConnection(),
+  execute: (...params) => pool.execute(...params)
+};
+
+// module.exports = { connection };
