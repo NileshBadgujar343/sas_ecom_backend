@@ -19,7 +19,7 @@ const dbConfig = require('../config/dbconfig.js');
 // });
 function connection(){
   try{
-  const connection = mysql.createpool({
+  const pool = mysql.createpool({
     host: dbConfig.HOST,
     user: dbConfig.USER,
     password: dbConfig.PASSWORD,
