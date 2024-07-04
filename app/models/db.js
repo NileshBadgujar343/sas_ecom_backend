@@ -1,6 +1,4 @@
 // 
-
-
 const mysql2 = require('mysql2');
 const dbConfig = require('../config/dbconfig.js');
 
@@ -11,11 +9,9 @@ const connection = mysql2.createConnection({
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
-  // keepAliveInitialDelay: 10000, 
-  // enableKeepAlive: true, 
-  connectionLimit: 10,
+  connectionLimit: 20,
   waitForConnections: true,
-  queueLimit: 0
+  queueLimit: 5,
 });
 
 
