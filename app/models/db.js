@@ -9,9 +9,9 @@ const connection = mysql2.createConnection({
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
-  connectionLimit: 20,
+  connectionLimit: 10,
   waitForConnections: true,
-  queueLimit: 5,
+  queueLimit: 5
 });
 
 
