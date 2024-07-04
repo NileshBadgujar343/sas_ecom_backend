@@ -11,20 +11,15 @@ const connection = mysql2.createConnection({
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
-  // keepAliveInitialDelay: 10000, 
-  // enableKeepAlive: true, 
   connectionLimit: 10,
   waitForConnections: true,
   queueLimit: 0
 });
 
 
-
-
 connection.connect(error => {
   if (error) throw error;
   console.log("Successfully connected to the database1.");
 });
-
 
 module.exports = { connection };
