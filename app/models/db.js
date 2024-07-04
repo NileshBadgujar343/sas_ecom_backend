@@ -1,6 +1,4 @@
 // 
-
-
 const mysql2 = require('mysql2');
 const dbConfig = require('../config/dbconfig.js');
 
@@ -13,13 +11,16 @@ const connection = mysql2.createConnection({
   database: dbConfig.DB,
   connectionLimit: 10,
   waitForConnections: true,
-  queueLimit: 0
+  queueLimit: 5
 });
+
+
 
 
 connection.connect(error => {
   if (error) throw error;
   console.log("Successfully connected to the database1.");
 });
+
 
 module.exports = { connection };
