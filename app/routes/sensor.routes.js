@@ -22,7 +22,7 @@ module.exports = app => {
 
     app.get("/categories", sensors.categories);
 
-    app.get("/products/:categoryName", sensors.products)
+    app.get("/products/:categoryName", () => sensors.products)
 
     //IITB Changes here
     app.post("/sensordata", sensors.store);
