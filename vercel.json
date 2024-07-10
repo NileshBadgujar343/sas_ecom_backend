@@ -1,20 +1,15 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "next.config.js",
-      "use": "@vercel/next"
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.18.1.x"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/server.js"
     }
-  ],
-  "functions": {
-    "api/*": {
-      "maxDuration": 10
-    }
-  }
+  ]
 }
+
