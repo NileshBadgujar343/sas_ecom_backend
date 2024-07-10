@@ -923,7 +923,7 @@ exports.categories = (req, res) => {
 };
 
 exports.products = (req, res) => {
-  console.log('req ---- ', req);
+  // console.log('req ---- ', req);
   const categoryName = req.params.categoryName;
 
   // Fetch category ID by name
@@ -931,16 +931,18 @@ exports.products = (req, res) => {
     if (err) {
       res.status(404).json({ error: 'Category not found' });
     }
-    console.log('category ---- ', categoryRows, 'err --- ', err);
+    // console.log('category ---- ', categoryRows, 'err --- ', err);
     const categoryId = categoryRows[0].id;
-    // console.log('category ---- ', categoryId);
+    // console.log('categoryID ---- ', categoryId);
 
     Sensor.getProductsById(categoryId, (err, productRows) => {
       if (err){
         console.log(err)
         res.status(500).json({ error: 'Internal server error' });
       }
-      else res.json(productRows);
+      else 
+      // console.log("Product_Rows",productRows)
+      res.json(productRows);
     });
   });
 
