@@ -933,7 +933,7 @@ exports.products = (req, res) => {
     }
     // console.log('category ---- ', categoryRows, 'err --- ', err);
     const categoryId = categoryRows[0].id;
-    // console.log('categoryID ---- ', categoryId);
+    console.log('categoryID ---- ', categoryId);
 
     Sensor.getProductsById(categoryId, (err, productRows) => {
       if (err){
